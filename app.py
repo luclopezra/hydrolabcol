@@ -211,10 +211,37 @@ st.markdown(
         border: none !important;
     }
 
-    /* Hide default streamlit chrome */
+    /* Hide default streamlit chrome but keep sidebar toggle visible */
     #MainMenu  { visibility: hidden; }
     footer     { visibility: hidden; }
-    header     { visibility: hidden; }
+    
+   /* Header transparente pero el botón de la sidebar sigue clickeable */
+   header[data-testid="stHeader"] {
+      background: transparent;
+      height: 0;
+   }
+   header[data-testid="stHeader"] > div:first-child {
+       background: transparent;
+   }
+
+   /* Botón para reabrir la sidebar — siempre visible */
+   [data-testid="stSidebarCollapsedControl"] {
+       display: block !important;
+       visibility: visible !important;
+       top: 0.6rem !important;
+       left: 0.6rem !important;
+       z-index: 999999 !important;
+   }
+   [data-testid="stSidebarCollapsedControl"] button {
+       background: var(--bg-card) !important;
+       border: 1px solid var(--accent-1) !important;
+       color: var(--accent-1) !important;
+       border-radius: 3px !important;
+   }
+   [data-testid="stSidebarCollapsedControl"] button:hover {
+       background: var(--accent-1) !important;
+       color: var(--bg-deep) !important;
+   }
     </style>
     """,
     unsafe_allow_html=True,
